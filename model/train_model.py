@@ -5,43 +5,58 @@ from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.applications import VGG16
 from tensorflow.keras import layers, models
 
-# Load the Fashion MNIST dataset
-(x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
+# --- Configuration ---
+IMG_SIZE = 224 # VGG16 input size
+BATCH_SIZE = 36 # Adjust based on your available RAM/GPU memory
+BUFFER_SIZE = 1000 # For shuffling
 
-# Preprocess: Resize to 224x224x3 to match VGG16 input and convert grayscale to RGB
-# def preprocess_images(images):
-#     resized = []
-#     for img in images:
-#         img = tf.image.resize(img[..., np.newaxis], (224, 224))        # Resize to 224x224
-#         img = tf.image.grayscale_to_rgb(img)                            
-#         resized.append(img.numpy())
-#     return np.array(resized) / 255.0  
+# --- Load Raw Data ---
+# Load data as numpy arrays FIRST, without initial preprocessing
+(x_train_raw, y_train_raw), (x_test_raw, y_test_raw) = fashion_mnist.load_data()
 
-# def preprocess_images(images):
-#     images = tf.expand_dims(images, axis=-1)  # Add channel dimension
-#     images = tf.image.resize(images, (224, 224))  # Resize all at once
-#     images = tf.image.grayscale_to_rgb(images)    # Convert to 3 channels
-#     return images.numpy()  # Only convert once at the end
+# --- Define Preprocessing Function (for tf.data) ---
+# This function processes ONE image tensor at a time
+def preprocess_image(image, label):
+    # Add channel dimension
+    image = tf.expand_dims(image, axis=-1)
+    # Resize
+    image = tf.image.resize(image, (IMG_SIZE, IMG_SIZE))
+    # Convert grayscale to RGB
+    image = tf.image.grayscale_to_rgb(image)
+    # Normalize to [0, 1] - VGG16 expects this range or specific preprocessing
+    # Note: VGG16 often uses tf.keras.applications.vgg16.preprocess_input
+    #       which converts to BGR and centers around ImageNet means.
+    #       Using simple / 255.0 is okay for transfer learning but sub-optimal.
+    #       Let's use the dedicated function for better results.
+    # image = image / 255.0 # Simple normalization
+    image = tf.keras.applications.vgg16.preprocess_input(image) # VGG16 specific preprocessing
 
-def preprocess_images(images):
-    images = tf.expand_dims(images, axis=-1)  # Make sure it has channel dimension
-    images = tf.image.resize(images, (224, 224))
-    images = images / 255.0
-    return images
+    # One-hot encode the label
+    label = tf.one_hot(label, depth=10)
+    return image, label
 
+# --- Build tf.data Pipelines ---
+# Training Dataset
+train_dataset = tf.data.Dataset.from_tensor_slices((x_train_raw, y_train_raw))
+train_dataset = train_dataset.map(preprocess_image, num_parallel_calls=tf.data.AUTOTUNE)
+train_dataset = train_dataset.cache() # Cache after preprocessing (if dataset fits in memory after map, speeds up epochs)
+                                       # Remove .cache() if the processed dataset is STILL too large for RAM.
+train_dataset = train_dataset.shuffle(BUFFER_SIZE)
+train_dataset = train_dataset.batch(BATCH_SIZE)
+train_dataset = train_dataset.prefetch(buffer_size=tf.data.AUTOTUNE) # Prefetch next batch
 
-x_train = preprocess_images(x_train)
-x_test = preprocess_images(x_test)
+# Testing Dataset
+test_dataset = tf.data.Dataset.from_tensor_slices((x_test_raw, y_test_raw))
+test_dataset = test_dataset.map(preprocess_image, num_parallel_calls=tf.data.AUTOTUNE)
+test_dataset = test_dataset.batch(BATCH_SIZE) # No shuffling for test set
+# test_dataset = test_dataset.cache() # Cache test set if it fits in memory
+test_dataset = test_dataset.prefetch(buffer_size=tf.data.AUTOTUNE)
 
-# One-hot encode the labels
-y_train = to_categorical(y_train, 10)
-y_test = to_categorical(y_test, 10)
-
-# Load VGG16 model without top layers
-base_model = VGG16(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+# --- Load VGG16 model ---
+base_model = VGG16(weights='imagenet', include_top=False, input_shape=(IMG_SIZE, IMG_SIZE, 3))
 base_model.trainable = False  # Freeze base layers
 
-# Build the model
+# --- Build the full model ---
 model = models.Sequential([
     base_model,
     layers.Flatten(),
@@ -50,12 +65,22 @@ model = models.Sequential([
     layers.Dense(10, activation='softmax')  # 10 output classes
 ])
 
-# Compile the model
+# --- Compile the model ---
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-# Train the model
-model.fit(x_train, y_train, epochs=5, batch_size=32, validation_data=(x_test, y_test))
+# --- Print model summary ---
+model.summary()
 
-# Save the trained model
+# --- Train the model using the datasets ---
+print("Starting model training...")
+history = model.fit(
+    train_dataset,
+    epochs=5,
+    validation_data=test_dataset
+    # Removed batch_size here, as it's handled by the dataset pipeline
+    # steps_per_epoch and validation_steps are inferred automatically from tf.data datasets
+)
+
+# --- Save the trained model ---
 model.save("fashion_model.h5")
 print("Model training complete and saved as fashion_model.h5")
