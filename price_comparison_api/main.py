@@ -4,6 +4,7 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 import io
+import os
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -19,12 +20,26 @@ app.add_middleware(
 )
 
 # Load model
-model = tf.lite.Interpreter(model_path="mobilenetv2_fashion_mnist.tflite")
+
+model_path = os.path.join(os.path.dirname(__file__), "mobilenetv2_fashion_mnist.tflite")
+model = tf.lite.Interpreter(model_path=model_path)
+
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"TFLite model not found at {model_path}")
+# else:
+#     print(f"Model loaded from {model_path}")
+
+
 model.allocate_tensors()
 
 # Load labels
-with open("labels.txt", "r") as f:
+# with open("labels.txt", "r") as f:
+#     labels = [line.strip() for line in f.readlines()]
+
+with open(os.path.join(os.path.dirname(__file__), "labels.txt"), "r") as f:
     labels = [line.strip() for line in f.readlines()]
+if not labels:
+    raise ValueError("Labels file is empty or not found.")
 
 # Preprocess function
 def preprocess_image(image_bytes):

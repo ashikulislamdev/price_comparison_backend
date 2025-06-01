@@ -1,0 +1,232 @@
+{
+  "T-shirt/top": [
+    {
+      "title": "Men's Breathable Cotton Tee",
+      "price": "$9.99",
+      "image": "https://example.com/images/jd/t-shirt/top_1.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/t-shirt/top_1"
+    },
+    {
+      "title": "Women's Casual V-Neck T-Shirt",
+      "price": "$14.99",
+      "image": "https://example.com/images/jd/t-shirt/top_2.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/t-shirt/top_2"
+    },
+    {
+      "title": "Unisex Printed Crew T-Shirt",
+      "price": "$19.99",
+      "image": "https://example.com/images/jd/t-shirt/top_3.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/t-shirt/top_3"
+    }
+  ],
+  "Trouser": [
+    {
+      "title": "Men's Stretch Chino Pants",
+      "price": "$9.99",
+      "image": "https://example.com/images/jd/trouser_1.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/trouser_1"
+    },
+    {
+      "title": "Women's High Rise Trousers",
+      "price": "$14.99",
+      "image": "https://example.com/images/jd/trouser_2.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/trouser_2"
+    },
+    {
+      "title": "Unisex Drawstring Joggers",
+      "price": "$19.99",
+      "image": "https://example.com/images/jd/trouser_3.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/trouser_3"
+    }
+  ],
+  "Pullover": [
+    {
+      "title": "Men's Zip-Up Pullover Hoodie",
+      "price": "$9.99",
+      "image": "https://example.com/images/jd/pullover_1.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/pullover_1"
+    },
+    {
+      "title": "Women's Soft Knit Pullover",
+      "price": "$14.99",
+      "image": "https://example.com/images/jd/pullover_2.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/pullover_2"
+    },
+    {
+      "title": "Unisex Lightweight Sweatshirt",
+      "price": "$19.99",
+      "image": "https://example.com/images/jd/pullover_3.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/pullover_3"
+    }
+  ],
+  "Dress": [
+    {
+      "title": "Women's Floral Print Dress",
+      "price": "$9.99",
+      "image": "https://example.com/images/jd/dress_1.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/dress_1"
+    },
+    {
+      "title": "Casual Sleeveless Midi Dress",
+      "price": "$14.99",
+      "image": "https://example.com/images/jd/dress_2.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/dress_2"
+    },
+    {
+      "title": "Elegant Lace Maxi Dress",
+      "price": "$19.99",
+      "image": "https://example.com/images/jd/dress_3.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/dress_3"
+    }
+  ],
+  "Coat": [
+    {
+      "title": "Men's Classic Wool Coat",
+      "price": "$9.99",
+      "image": "https://example.com/images/jd/coat_1.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/coat_1"
+    },
+    {
+      "title": "Women's Longline Overcoat",
+      "price": "$14.99",
+      "image": "https://example.com/images/jd/coat_2.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/coat_2"
+    },
+    {
+      "title": "Unisex Padded Winter Jacket",
+      "price": "$19.99",
+      "image": "https://example.com/images/jd/coat_3.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/coat_3"
+    }
+  ],
+  "Sandal": [
+    {
+      "title": "Sandal 1 - Jd Edition",
+      "price": "$9.99",
+      "image": "https://example.com/images/jd/sandal_1.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/sandal_1"
+    },
+    {
+      "title": "Sandal 2 - Jd Edition",
+      "price": "$14.99",
+      "image": "https://example.com/images/jd/sandal_2.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/sandal_2"
+    },
+    {
+      "title": "Sandal 3 - Jd Edition",
+      "price": "$19.99",
+      "image": "https://example.com/images/jd/sandal_3.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/sandal_3"
+    }
+  ],
+  "Shirt": [
+    {
+      "title": "Shirt 1 - Jd Edition",
+      "price": "$9.99",
+      "image": "https://example.com/images/jd/shirt_1.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/shirt_1"
+    },
+    {
+      "title": "Shirt 2 - Jd Edition",
+      "price": "$14.99",
+      "image": "https://example.com/images/jd/shirt_2.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/shirt_2"
+    },
+    {
+      "title": "Shirt 3 - Jd Edition",
+      "price": "$19.99",
+      "image": "https://example.com/images/jd/shirt_3.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/shirt_3"
+    }
+  ],
+  "Sneaker": [
+    {
+      "title": "Sneaker 1 - Jd Edition",
+      "price": "$9.99",
+      "image": "https://example.com/images/jd/sneaker_1.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/sneaker_1"
+    },
+    {
+      "title": "Sneaker 2 - Jd Edition",
+      "price": "$14.99",
+      "image": "https://example.com/images/jd/sneaker_2.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/sneaker_2"
+    },
+    {
+      "title": "Sneaker 3 - Jd Edition",
+      "price": "$19.99",
+      "image": "https://example.com/images/jd/sneaker_3.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/sneaker_3"
+    }
+  ],
+  "Bag": [
+    {
+      "title": "Bag 1 - Jd Edition",
+      "price": "$9.99",
+      "image": "https://example.com/images/jd/bag_1.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/bag_1"
+    },
+    {
+      "title": "Bag 2 - Jd Edition",
+      "price": "$14.99",
+      "image": "https://example.com/images/jd/bag_2.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/bag_2"
+    },
+    {
+      "title": "Bag 3 - Jd Edition",
+      "price": "$19.99",
+      "image": "https://example.com/images/jd/bag_3.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/bag_3"
+    }
+  ],
+  "Ankle boot": [
+    {
+      "title": "Ankle boot 1 - Jd Edition",
+      "price": "$9.99",
+      "image": "https://example.com/images/jd/ankle_boot_1.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/ankle_boot_1"
+    },
+    {
+      "title": "Ankle boot 2 - Jd Edition",
+      "price": "$14.99",
+      "image": "https://example.com/images/jd/ankle_boot_2.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/ankle_boot_2"
+    },
+    {
+      "title": "Ankle boot 3 - Jd Edition",
+      "price": "$19.99",
+      "image": "https://example.com/images/jd/ankle_boot_3.jpg",
+      "store": "jd",
+      "url": "https://jd.com/product/ankle_boot_3"
+    }
+  ]
+}
